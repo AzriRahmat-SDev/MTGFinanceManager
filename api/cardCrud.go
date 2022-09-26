@@ -15,6 +15,7 @@ type CardInfo struct {
 	Reserved      bool        `json:"reserved"`
 	Multiverse_id []int       `json:"multiverse_ids"`
 	CardPrice     Card_Prices `json:"prices"`
+	Object        string
 }
 
 type Card_Prices struct {
@@ -23,8 +24,10 @@ type Card_Prices struct {
 	MTGO_Tix     string `json:"tix"`
 }
 
+const connection string = "root:password@tcp(localhost:56297)/my_db"
+
 func OpenCardDB() *sql.DB {
-	db, err := sql.Open("mysql", "user:password@tcp(127.0.0.1:3306)/my_industryDB")
+	db, err := sql.Open("mysql", connection)
 	if err != nil {
 		log.Fatal(err.Error())
 	}
@@ -33,7 +36,7 @@ func OpenCardDB() *sql.DB {
 
 //Create and insert into DB, links with post request
 func InsertCardName(db *sql.DB, f CardInfo, multiverse_ids string) {
-	query := fmt.Sprintf("INSERT INTO CardItem (ID,Name,CardMarket_id, TcgPlayer_id,Multiverse_id,MTGO_id,Reserved) VALUES ('%s', '%s', '%v','%v','%v','%v','%v')", f.ID, f.Name, f.CardMarket_id, f.TcgPlayer_id, multiverse_ids, f.MTGO_id, f.Reserved)
+	query := fmt.Sprintf("INSERT INTO CardItem (ID,Name,CardMarket_id, TcgPlayer_id,Multiverse_id,MTGO_id,Reserved,PriceNormal,PriceFoil,MTGO_Tix) VALUES ('%s', '%s', '%v','%v','%v','%v','%v','%s','%s','%s')", f.ID, f.Name, f.CardMarket_id, f.TcgPlayer_id, multiverse_ids, f.MTGO_id, f.Reserved, f.CardPrice.PricesNormal, f.CardPrice.PricesFoil, f.CardPrice.MTGO_Tix)
 	_, err := db.Query(query)
 	if err != nil {
 		fmt.Println(err.Error())

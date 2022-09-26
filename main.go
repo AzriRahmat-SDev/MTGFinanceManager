@@ -2,9 +2,7 @@ package main
 
 import (
 	"GoIndustry/api"
-	"GoIndustry/database"
 	"GoIndustry/functions"
-	"database/sql"
 	"fmt"
 	"log"
 	"net/http"
@@ -15,16 +13,6 @@ import (
 )
 
 func main() {
-
-	db, err := sql.Open("mysql", "user:password@tcp(127.0.0.1:3306)/my_industryDB")
-	if err != nil {
-		panic(err.Error())
-	}
-	defer db.Close()
-
-	fmt.Println("Database successfully opened")
-
-	database.GetFoodItem(db)
 
 	var wg sync.WaitGroup
 	wg.Add(2)
