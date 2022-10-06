@@ -1,5 +1,5 @@
-FROM mysql
+FROM mysql:oracle
 
-ENV MYSQL_DATABASE my_db
+ENV MYSQL_DATABASE database
 
 COPY ./sql-scripts/ /docker-entrypoint-initdb.d/
