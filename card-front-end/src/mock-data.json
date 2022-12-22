@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "quantity": 1,
+        "cardName": "Mother of Runes",
+        "version": "Secret lair drop",
+        "condition": "NM",
+        "language": "English",
+        "finish":"Foil",
+        "cardPrice": "$1.00"
+    },
+    {
+        "id": 2,
+        "quantity": 1,
+        "cardName": "Thalia guardian of Thraben",
+        "version": "Innistrad: Crimson Vow",
+        "condition": "NM",
+        "language": "English",
+        "finish":"Foil",
+        "cardPrice": "$1.00"
+    },
+    {
+        "id": 3,
+        "quantity": 1,
+        "cardName": "Swords to plowshare",
+        "version": "Secret lair drop",
+        "condition": "NM",
+        "language": "English",
+        "finish":"Foil",
+        "cardPrice": "$6.00"
+    }
+]
